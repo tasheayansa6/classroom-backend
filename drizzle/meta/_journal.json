@@ -8,6 +8,41 @@
       "when": 1769673531051,
       "tag": "0000_true_typhoid_mary",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1769845556474,
+      "tag": "0001_mature_lady_deathstrike",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1769846207719,
+      "tag": "0002_luxuriant_outlaw_kid",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1769877893217,
+      "tag": "0003_natural_riptide",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1769878225697,
+      "tag": "0004_true_vulcan",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1769885906468,
+      "tag": "0005_aberrant_masked_marvel",
+      "breakpoints": true
     }
   ]
 }
