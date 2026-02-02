@@ -1,3 +1,5 @@
+import classes from "./routes/classes.js";
+
 import('apminsight')
     .then(({ default: AgentAPI }) => AgentAPI.config())
     .catch(() => console.log('APM not available in this environment'));
@@ -5,41 +7,43 @@ import('apminsight')
 import cors from "cors";
 import express from 'express';
 import subjectsRouter from "./routes/subjects.js";
+import usersRouter from "./routes/users.js";
+import classesRouter from "./routes/classes.js";
 import securityMiddleware from "./middleware/security.js";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth.js";
 
 const app = express();
-const PORT = 4000; // Hardcoded for debugging
+const PORT = 4000;
 
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true,
 }));
 
-/**
- * FIX 1: The "Dead Simple" Auth Mount
- * Using app.use with a string prefix is the most stable way in Express.
- * This MUST come before express.json()
- */
+// Auth route
 app.use("/api/auth", (req, res) => {
     return toNodeHandler(auth)(req, res);
 });
 
-/**
- * FIX 2: Body Parser
- * Only runs for routes that aren't /api/auth
- */
+// Body parser for other routes
 app.use(express.json());
 
+// Logging middleware
 app.use((req, res, next) => {
     console.log(`[${new Date().toLocaleTimeString()}] ${req.method} ${req.url}`);
     next();
 });
 
+// Security middleware
 app.use(securityMiddleware);
-app.use("/api/subjects", subjectsRouter);
 
+// Mount your API routes
+app.use("/api/subjects", subjectsRouter);
+app.use("/api/users", usersRouter); // <-- ADD THIS
+app.use("/api/classes", classesRouter);
+
+// Root test
 app.get('/', (req, res) => {
     res.send('API is Online');
 });
