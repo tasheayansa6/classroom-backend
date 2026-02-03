@@ -12,9 +12,12 @@ import classesRouter from "./routes/classes.js";
 import securityMiddleware from "./middleware/security.js";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth.js";
+import 'dotenv/config'; // this automatically loads variables from .env
 
 const app = express();
 const PORT = 4000;
+
+
 
 app.use(cors({
     origin: "http://localhost:5173",
